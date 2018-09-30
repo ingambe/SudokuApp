@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvCredit;
 
     public static final String EXTRA_LEVEL = "EXTRA_LEVEL";
+    public static final String EXTRA_SIZE = "EXTRA_SIZE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
