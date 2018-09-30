@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.DigitsKeyListener;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -56,6 +58,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
                 InputFilter[] inputArray = new InputFilter[1];
                 inputArray[0] = new InputFilter.LengthFilter(1);
                 editText.setFilters(inputArray);
+                editText.setBackgroundColor(0);
+                editText.setGravity(Gravity.CENTER);
                 // if it's not a hole we need to fill it and desactivate user inputs
                 if(!model.getHoleGrid()[i][j]){
                     editText.setText("" + model.getFullGrid()[i][j]);
@@ -63,10 +67,10 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
                     editText.setFocusableInTouchMode(false);
                     editText.setClickable(false);
                 }
-
-                line.addView(editText,new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                editText.setBackground(getDrawable(R.drawable.sudoku_cell));
+                line.addView(editText, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             }
-            tbSudoku.addView(line,new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+            tbSudoku.addView(line, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }
     }
 }
