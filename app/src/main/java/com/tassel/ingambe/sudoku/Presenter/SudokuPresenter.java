@@ -21,6 +21,8 @@ public class SudokuPresenter {
     public void initView(){
         model = SudokuAbstractFactory.make(difficulty, size);
         view.generateGrid(model);
+        view.setDifficultyText(difficulty);
+        view.startChronometer();
     }
 
 }

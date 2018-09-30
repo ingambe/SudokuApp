@@ -6,4 +6,6 @@
     <string name="hard">Hard</string>
     <string name="credit">Created By Pierre Tasssel</string>
     <string name="submit">Submit</string>
+    <string name="selected_difficulty">Difficulty :</string>
+    <string name="second_s">" s"</string>
 </resources>
