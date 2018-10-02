@@ -11,5 +11,7 @@ public interface SudokuView {
     void startChronometer();
     void stopChronometer();
     int getGridElement(int i, int j);
+    void colorOrangeRow(int i, int j);
+    void colorRedRow(int i, int j);
 
 }

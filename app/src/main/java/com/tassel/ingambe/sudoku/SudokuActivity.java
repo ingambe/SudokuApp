@@ -1,5 +1,6 @@
 package com.tassel.ingambe.sudoku;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
@@ -20,6 +21,7 @@ import com.tassel.ingambe.sudoku.View.SudokuView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SudokuActivity extends AppCompatActivity implements SudokuView {
 
@@ -41,6 +43,15 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
         ButterKnife.bind(this);
 
         sudokuPresenter = new SudokuPresenter(this);
+    }
+
+    @OnClick({R.id.bt_submit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.bt_submit:
+                sudokuPresenter.verifySudoku();
+                break;
+        }
     }
 
     @Override
@@ -125,8 +136,70 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
         if(parentRow instanceof TableRow){
             TableRow tableRow = (TableRow) parentRow;
             EditText editText = (EditText) tableRow.getChildAt(j);
-            return Integer.parseInt(editText.getText().toString());
+            // if empty we return a flag to change the color with
+            // a different color than the one for an error
+            if(editText.getText().toString().equals("")){
+                return -1;
+            } else {
+                return Integer.parseInt(editText.getText().toString());
+            }
         }
         return 0;
+    }
+
+    @Override
+    public void colorOrangeRow(int i, int j) {
+        colorRow(i, j, 1);
+    }
+
+    @Override
+    public void colorRedRow(int i, int j) {
+        colorRow(i, j, 0);
+    }
+
+    /**
+     * Color a row with the desire color
+     * @param i line
+     * @param j columm
+     * @param color 0 == red
+     *              1 == orange
+     */
+    private void colorRow(int i, int j, int color){
+        View parentRow = tbSudoku.getChildAt(i);
+        if(parentRow instanceof TableRow){
+            TableRow tableRow = (TableRow) parentRow;
+            EditText editText = (EditText) tableRow.getChildAt(j);
+            switch (color){
+                case 0:
+                    if(i == 2 && j == 3 || i == 2 && j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_bottom_red));
+                    } else if(i == 5 && j == 3 || i == 5 && j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_bottom_red));
+                    } else if(j == 3 || j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_red));
+                    } else if(i == 2 || i == 5){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_bottom_red));
+                    } else {
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_red));
+                    }
+                    break;
+                case 1:
+                    if(i == 2 && j == 3 || i == 2 && j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_bottom_orange));
+                    } else if(i == 5 && j == 3 || i == 5 && j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_bottom_orange));
+                    } else if(j == 3 || j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_orange));
+                    } else if(i == 2 || i == 5){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_bottom_orange));
+                    } else {
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_orange));
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+        }
     }
 }
