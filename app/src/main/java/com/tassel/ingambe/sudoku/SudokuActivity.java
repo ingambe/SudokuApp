@@ -2,6 +2,7 @@ package com.tassel.ingambe.sudoku;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -41,8 +42,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
         ButterKnife.bind(this);
-
-        sudokuPresenter = new SudokuPresenter(this);
+        sudokuPresenter = (SudokuPresenter) getLastCustomNonConfigurationInstance();
+        if(sudokuPresenter == null) {
+            sudokuPresenter = new SudokuPresenter();
+        }
+        sudokuPresenter.initView(this);
     }
 
     @OnClick({R.id.bt_submit})
@@ -85,6 +89,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
                     editText.setClickable(false);
                 } else{
                     editText.setTextColor(getResources().getColor(R.color.colorAccent));
+                    editText.setSelectAllOnFocus(true);
                 }
                 if(i == 2 && j == 3 || i == 2 && j == 6){
                     editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_bottom));
@@ -148,6 +153,18 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
     }
 
     @Override
+    public void setGridElement(int i, int j, int value) {
+        View parentRow = tbSudoku.getChildAt(i);
+        if(parentRow instanceof TableRow){
+            TableRow tableRow = (TableRow) parentRow;
+            EditText editText = (EditText) tableRow.getChildAt(j);
+            // if empty we return a flag to change the color with
+            // a different color than the one for an error
+            editText.setText("" + value);
+        }
+    }
+
+    @Override
     public void colorOrangeRow(int i, int j) {
         colorRow(i, j, 1);
     }
@@ -199,7 +216,34 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
                 default:
                     break;
             }
-
         }
     }
+
+    /**
+     *
+     * @return time elapsed in milliseconds
+     */
+    @Override
+    public long getChronometerTime() {
+        long elapsedMilliseconds = (SystemClock.elapsedRealtime() - chronometer.getBase());
+        return elapsedMilliseconds;
+    }
+
+    @Override
+    public void setChronometerTime(long milliseconds) {
+        chronometer.setBase(SystemClock.elapsedRealtime() - milliseconds);
+    }
+
+    @Override
+    public Object onRetainCustomNonConfigurationInstance() {
+        return sudokuPresenter;
+    }
+
+    @Override
+    protected void onDestroy() {
+        sudokuPresenter.saveState();
+        sudokuPresenter.detachView();
+        super.onDestroy();
+    }
+
 }

@@ -15,19 +15,47 @@ public class SudokuPresenter {
     private Sudoku model;
     private int difficulty;
     private int size;
+    // variable to save state
+    private int[][] savedState;
+    private long timeChronometer;
 
-    public SudokuPresenter(SudokuView view) {
+    public void initView(SudokuView view){
         this.view = view;
         this.difficulty = view.getDifficulty();
         this.size = view.getSize();
-        initView();
-    }
-
-    public void initView(){
         model = SudokuAbstractFactory.make(difficulty, size);
         view.generateGrid(model);
         view.setDifficultyText(difficulty);
         view.startChronometer();
+        // if we need to restore state
+        if(savedState != null){
+            view.setChronometerTime(timeChronometer);
+            for(int i = 0; i < model.getSize(); i++){
+                for(int j = 0; j < model.getSize(); j++){
+                    if(savedState[i][j] != -1){
+                        view.setGridElement(i, j, savedState[i][j]);
+                    }
+                }
+            }
+        }
+    }
+
+    public void detachView(){
+        this.view = null;
+    }
+
+    public void saveState(){
+        savedState = new int[model.getSize()][model.getSize()];
+        timeChronometer = view.getChronometerTime();
+        for(int i = 0; i < model.getSize(); i++){
+            for(int j = 0; j < model.getSize(); j++){
+                if(model.getHoleGrid()[i][j] && view.getGridElement(i, j) != -1){
+                    savedState[i][j] = view.getGridElement(i, j);
+                } else {
+                    savedState[i][j] = -1;
+                }
+            }
+        }
     }
 
     public void verifySudoku(){
@@ -44,6 +72,7 @@ public class SudokuPresenter {
         }
         if(errorRow.isEmpty() && emptyRow.isEmpty()){
             Log.d("GRID_RESULT", "Correct !");
+            view.stopChronometer();
         } else {
             // error row in red
             for(Couple error : errorRow){
