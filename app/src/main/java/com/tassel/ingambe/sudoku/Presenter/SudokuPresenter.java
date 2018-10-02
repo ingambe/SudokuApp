@@ -108,7 +108,13 @@ public class SudokuPresenter {
     }
 
     public void showSuccess(){
-
+        switch (view.getDifficulty()){
+            case 0:
+                view.alertDialogSuccess("test");
+                break;
+            default:
+                break;
+        }
     }
 
 }
