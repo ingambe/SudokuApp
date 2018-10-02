@@ -51,6 +51,13 @@ public class SudokuPresenter {
         this.view = null;
     }
 
+    public void restart(SudokuView view){
+        savedState = null;
+        errorRow = null;
+        emptyRow = null;
+        initView(view);
+    }
+
     public void saveState(){
         savedState = new int[model.getSize()][model.getSize()];
         timeChronometer = view.getChronometerTime();

@@ -1,8 +1,10 @@
 package com.tassel.ingambe.sudoku;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -225,8 +227,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
      */
     @Override
     public long getChronometerTime() {
-        long elapsedMilliseconds = (SystemClock.elapsedRealtime() - chronometer.getBase());
-        return elapsedMilliseconds;
+        return (SystemClock.elapsedRealtime() - chronometer.getBase());
     }
 
     @Override
@@ -246,4 +247,42 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
         super.onDestroy();
     }
 
+    @Override
+    public void alertDialogSuccess(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setCancelable(true)
+                .setNegativeButton(R.string.menu, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        sudokuPresenter.restart(SudokuActivity.this);
+                    }
+                })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        btSubmit.setText(getResources().getText(R.string.retry));
+                        btSubmit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                sudokuPresenter.restart(SudokuActivity.this);
+                                btSubmit.setText(getResources().getText(R.string.submit));
+                                btSubmit.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        sudokuPresenter.verifySudoku();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+        builder.create().show();
+    }
 }
