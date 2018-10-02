@@ -18,6 +18,8 @@ public class SudokuPresenter {
     // variable to save state
     private int[][] savedState;
     private long timeChronometer;
+    private List<Couple> errorRow;
+    private List<Couple> emptyRow;
 
     public void initView(SudokuView view){
         this.view = view;
@@ -37,6 +39,11 @@ public class SudokuPresenter {
                     }
                 }
             }
+            showIncorrectRow();
+            showEmptyRow();
+        } else {
+            errorRow = new ArrayList<>();
+            emptyRow = new ArrayList<>();
         }
     }
 
@@ -59,8 +66,8 @@ public class SudokuPresenter {
     }
 
     public void verifySudoku(){
-        List<Couple> errorRow = new ArrayList<>();
-        List<Couple> emptyRow = new ArrayList<>();
+        errorRow = new ArrayList<>();
+        emptyRow = new ArrayList<>();
         for(int i = 0; i < model.getSize(); i++){
             for(int j = 0; j < model.getSize(); j++){
                 if(view.getGridElement(i, j) == -1){
@@ -75,22 +82,22 @@ public class SudokuPresenter {
             view.stopChronometer();
         } else {
             // error row in red
-            for(Couple error : errorRow){
-                view.colorRedRow(error.i, error.j);
-            }
+            showIncorrectRow();
             // empty row in orange
-            for(Couple empty : emptyRow){
-                view.colorOrangeRow(empty.i, empty.j);
-            }
+            showEmptyRow();
         }
     }
 
     public void showEmptyRow(){
-
+        for(Couple empty : emptyRow){
+            view.colorOrangeRow(empty.i, empty.j);
+        }
     }
 
     public void showIncorrectRow(){
-
+        for(Couple error : errorRow){
+            view.colorRedRow(error.i, error.j);
+        }
     }
 
     public void showSuccess(){

@@ -113,13 +113,13 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
         tvSelectedDifficulty.setText(R.string.selected_difficulty);
         switch (difficulty) {
             case 0:
-                tvSelectedDifficulty.append(getResources().getString(R.string.easy));
+                tvSelectedDifficulty.append(" " + getResources().getString(R.string.easy));
                 break;
             case 1:
-                tvSelectedDifficulty.append(getResources().getString(R.string.medium));
+                tvSelectedDifficulty.append(" " + getResources().getString(R.string.medium));
                 break;
             default:
-                tvSelectedDifficulty.append(getResources().getString(R.string.hard));
+                tvSelectedDifficulty.append(" " + getResources().getString(R.string.hard));
                 break;
         }
     }
