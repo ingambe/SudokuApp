@@ -10,5 +10,6 @@ public interface SudokuView {
     void setDifficultyText(int difficulty);
     void startChronometer();
     void stopChronometer();
+    int getGridElement(int i, int j);
 
 }

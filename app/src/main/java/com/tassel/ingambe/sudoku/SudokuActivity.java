@@ -6,6 +6,7 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.DigitsKeyListener;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -116,5 +117,16 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
     @Override
     public void stopChronometer() {
         chronometer.stop();
+    }
+
+    @Override
+    public int getGridElement(int i, int j) {
+        View parentRow = tbSudoku.getChildAt(i);
+        if(parentRow instanceof TableRow){
+            TableRow tableRow = (TableRow) parentRow;
+            EditText editText = (EditText) tableRow.getChildAt(j);
+            return Integer.parseInt(editText.getText().toString());
+        }
+        return 0;
     }
 }
