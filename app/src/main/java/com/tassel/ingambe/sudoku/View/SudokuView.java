@@ -18,5 +18,8 @@ public interface SudokuView {
     void setChronometerTime(long milliseconds);
     void restartChronometer();
     void alertDialogSuccess(String message);
+    String getTextSuccess(int difficulty);
+    String getTextTime();
+    String getTextSecond();
 
 }

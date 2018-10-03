@@ -86,7 +86,6 @@ public class SudokuPresenter {
             }
         }
         if(errorRow.isEmpty() && emptyRow.isEmpty()){
-            Log.d("GRID_RESULT", "Correct !");
             view.stopChronometer();
             showSuccess();
         } else {
@@ -110,13 +109,13 @@ public class SudokuPresenter {
     }
 
     public void showSuccess(){
-        switch (view.getDifficulty()){
-            case 0:
-                view.alertDialogSuccess("test");
-                break;
-            default:
-                break;
-        }
+        StringBuilder builder = new StringBuilder();
+        builder.append(view.getTextSuccess(view.getDifficulty()));
+        builder.append("\n");
+        builder.append(view.getTextTime());
+        builder.append(view.getChronometerTime() / 1000.0);
+        builder.append(view.getTextTime());
+        view.alertDialogSuccess(builder.toString());
     }
 
 }

@@ -10,4 +10,8 @@
     <string name="second_s">" s"</string>
     <string name="retry">Retry"</string>
     <string name="menu">Menu"</string>
+    <string name="easy_success">Good job ! It was a piece of cake</string>
+    <string name="medium_success">Congratulation ! Too easy for you</string>
+    <string name="hard_success">Wahooo ! You\'re strong</string>
+    <string name="time_success">You succed in </string>
 </resources>

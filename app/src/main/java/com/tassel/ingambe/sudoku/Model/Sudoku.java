@@ -29,4 +29,5 @@ public class Sudoku {
     public boolean[][] getHoleGrid() {
         return holeGrid;
     }
+
 }

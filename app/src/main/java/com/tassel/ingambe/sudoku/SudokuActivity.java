@@ -70,6 +70,12 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
         return getIntent().getIntExtra(MainActivity.EXTRA_SIZE, 9);
     }
 
+    /**
+     * Generate the grid from the sudoku model
+     * If it's a hole we made it fillable and empty
+     * Otherwise we made it unfillable and with the correct number
+     * @param model the sudoku model
+     */
     @Override
     public void generateGrid(Sudoku model) {
         // we remove all view in case we restart
@@ -224,7 +230,6 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
     }
 
     /**
-     *
      * @return time elapsed in milliseconds
      */
     @Override
@@ -291,5 +296,45 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
                     }
                 });
         builder.create().show();
+    }
+
+    /**
+     * The success text depend on the difficulty
+     * @param difficulty the difficulty
+     * @return the text to display to the user in the alert dialog
+     */
+    @Override
+    public String getTextSuccess(int difficulty) {
+        int id;
+        switch (difficulty){
+            case 0:
+                id = R.string.easy_success;
+                break;
+            case 1:
+                id = R.string.medium_success;
+                break;
+            default:
+                id = R.string.hard_success;
+                break;
+        }
+        return getResources().getText(id).toString();
+    }
+
+    /**
+     * Text for the success alert dialog
+     * @return the text to inform about the time spent
+     */
+    @Override
+    public String getTextTime() {
+        return getResources().getText(R.string.time_success).toString();
+    }
+
+    /**
+     * Get the second abbreviation
+     * @return the second abbreviation
+     */
+    @Override
+    public String getTextSecond() {
+        return getResources().getText(R.string.second_s).toString();
     }
 }
