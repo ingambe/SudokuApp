@@ -55,6 +55,7 @@ public class SudokuPresenter {
         savedState = null;
         errorRow = null;
         emptyRow = null;
+        view.restartChronometer();
         initView(view);
     }
 
@@ -87,6 +88,7 @@ public class SudokuPresenter {
         if(errorRow.isEmpty() && emptyRow.isEmpty()){
             Log.d("GRID_RESULT", "Correct !");
             view.stopChronometer();
+            showSuccess();
         } else {
             // error row in red
             showIncorrectRow();

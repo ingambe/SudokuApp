@@ -16,6 +16,7 @@ public interface SudokuView {
     void colorRedRow(int i, int j);
     long getChronometerTime();
     void setChronometerTime(long milliseconds);
+    void restartChronometer();
     void alertDialogSuccess(String message);
 
 }

@@ -72,6 +72,8 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
 
     @Override
     public void generateGrid(Sudoku model) {
+        // we remove all view in case we restart
+        tbSudoku.removeAllViews();
         for (int i = 0; i < model.getSize(); i++) {
             TableRow line = new TableRow(this);
             for (int j = 0; j < model.getSize(); j++) {
@@ -233,6 +235,11 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
     @Override
     public void setChronometerTime(long milliseconds) {
         chronometer.setBase(SystemClock.elapsedRealtime() - milliseconds);
+    }
+
+    @Override
+    public void restartChronometer() {
+        chronometer.setBase(SystemClock.elapsedRealtime());
     }
 
     @Override
