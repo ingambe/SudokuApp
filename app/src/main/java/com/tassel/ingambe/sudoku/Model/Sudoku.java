@@ -18,6 +18,18 @@ public class Sudoku {
         this.holeGrid = new boolean[size][size];
     }
 
+    public Sudoku(Sudoku sudoku){
+        this.size = sudoku.getSize();
+        this.fullGrid = new int[size][size];
+        this.holeGrid = new boolean[size][size];
+        for(int i = 0; i < sudoku.getSize(); i++){
+            for(int j = 0; j < sudoku.getSize(); j++){
+                fullGrid[i][j] = sudoku.fullGrid[i][j];
+                holeGrid[i][j] = sudoku.holeGrid[i][j];
+            }
+        }
+    }
+
     public int getSize() {
         return size;
     }
