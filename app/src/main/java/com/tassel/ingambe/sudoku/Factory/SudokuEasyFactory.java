@@ -1,6 +1,7 @@
 package com.tassel.ingambe.sudoku.Factory;
 
 import com.tassel.ingambe.sudoku.Model.Sudoku;
+import com.tassel.ingambe.sudoku.Solver.SudokuSolver;
 
 public class SudokuEasyFactory {
 
@@ -12,13 +13,25 @@ public class SudokuEasyFactory {
     public static Sudoku make(int size) {
         int[][] initialGrid = makeGrid(size);
         boolean[][] trous = makeHoles(size);
-        return new Sudoku(size, initialGrid, trous);
+        Sudoku sudoku = new Sudoku(size, initialGrid, trous);
+        int i = 0;
+        int backtrack = Integer.MAX_VALUE;
+        while (i < 1000 && backtrack > 10){
+            SudokuRandomizer sudokuRandomizer = new SudokuRandomizer(sudoku);
+            Sudoku tmp = sudokuRandomizer.randomize();
+            SudokuSolver solver = new SudokuSolver(tmp);
+            solver.solve();
+            if(solver.getBacktracks() < backtrack){
+                backtrack = solver.getBacktracks();
+                sudoku = tmp;
+            }
+            i++;
+        }
+        return sudoku;
     }
 
     public static Sudoku make() {
-        int[][] initialGrid = makeGrid(9);
-        boolean[][] holes = makeHoles(9);
-        return new Sudoku(9, initialGrid, holes);
+        return make(9);
     }
 
     private static int[][] makeGrid(int size) {

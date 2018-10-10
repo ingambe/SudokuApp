@@ -4,7 +4,7 @@ import com.tassel.ingambe.sudoku.Model.Sudoku;
 
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.Solver;
-import org.chocosolver.solver.search.strategy.Search;
+import org.chocosolver.solver.search.measure.IMeasures;
 import org.chocosolver.solver.variables.IntVar;
 
 public class SudokuSolver {
@@ -15,6 +15,7 @@ public class SudokuSolver {
     private IntVar lines[][];
     private IntVar rows[][];
     private IntVar squares[][];
+    private Solver solver;
 
     long nbSolutions;
     long nbBacktrack;
@@ -86,6 +87,18 @@ public class SudokuSolver {
             }
         }
         return solution;
+    }
+
+    public int getBacktracks() {
+        return (int) solver.getBackTrackCount();
+    }
+
+    public int getDepth() {
+        return (int) solver.getMaxDepth();
+    }
+
+    public int getFails() {
+        return (int) solver.getFailCount();
     }
 
 }

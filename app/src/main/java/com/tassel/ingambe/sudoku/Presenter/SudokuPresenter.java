@@ -1,7 +1,5 @@
 package com.tassel.ingambe.sudoku.Presenter;
 
-import android.util.Log;
-
 import com.tassel.ingambe.sudoku.Factory.SudokuAbstractFactory;
 import com.tassel.ingambe.sudoku.Model.Sudoku;
 import com.tassel.ingambe.sudoku.View.SudokuView;

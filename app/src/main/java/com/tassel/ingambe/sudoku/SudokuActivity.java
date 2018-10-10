@@ -1,7 +1,6 @@
 package com.tassel.ingambe.sudoku;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
@@ -337,4 +336,5 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
     public String getTextSecond() {
         return getResources().getText(R.string.second_s).toString();
     }
+
 }
