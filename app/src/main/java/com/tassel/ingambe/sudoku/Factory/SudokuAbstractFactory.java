@@ -9,9 +9,9 @@ public class SudokuAbstractFactory {
             case 0:
                 return SudokuEasyFactory.make(size);
             case 1:
-                return SudokuEasyFactory.make(size);
+                return SudokuMediumFactory.make(size);
             default:
-                return SudokuEasyFactory.make(size);
+                return SudokuHardFactory.make(size);
         }
     }
 
