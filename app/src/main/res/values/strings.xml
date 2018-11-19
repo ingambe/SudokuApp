@@ -14,4 +14,5 @@
     <string name="medium_success">Congratulation ! Too easy for you</string>
     <string name="hard_success">Wahooo ! You\'re strong</string>
     <string name="time_success">You succed in </string>
+    <string name="take_picture">Take a picture</string>
 </resources>
