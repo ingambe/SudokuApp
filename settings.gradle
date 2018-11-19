@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':choco-solver-4.0.9', ':choco-solver'

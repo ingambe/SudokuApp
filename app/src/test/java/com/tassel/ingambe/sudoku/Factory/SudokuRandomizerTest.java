@@ -1,6 +1,7 @@
 package com.tassel.ingambe.sudoku.Factory;
 
 import com.tassel.ingambe.sudoku.Model.Sudoku;
+import com.tassel.ingambe.sudoku.Solver.SudokuSolver;
 
 import org.junit.Test;
 
@@ -17,8 +18,6 @@ public class SudokuRandomizerTest {
 
     @Test
     public void testCorrectness() {
-        /**
-         * NEED API 26 FOR CHOCO SOLVER *
         SudokuRandomizer randomizer = new SudokuRandomizer(sudoku);
         Sudoku randomized = randomizer.randomize();
         SudokuSolver solver = new SudokuSolver(randomized);
@@ -29,6 +28,5 @@ public class SudokuRandomizerTest {
                 assertEquals("difference there (" + i + "," + j + ")", randomized.getFullGrid()[i][j], result[i][j]);
             }
         }
-         **/
     }
 }
