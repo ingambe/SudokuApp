@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_PHOTO_PATH = "PHOTO_PATH";
 
     public static final int REQUEST_IMAGE_CAPTURE = 1;
-
+    
     private String mCurrentPhotoPath;
 
     @Override

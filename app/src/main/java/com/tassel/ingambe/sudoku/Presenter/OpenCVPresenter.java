@@ -1,8 +1,5 @@
 package com.tassel.ingambe.sudoku.Presenter;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.tassel.ingambe.sudoku.Model.Sudoku;
 import com.tassel.ingambe.sudoku.View.OpenCVView;
 
@@ -79,10 +76,6 @@ public class OpenCVPresenter {
     }
 
     private Sudoku fromImage(String path){
-        Bitmap sudoku_bitmap = BitmapFactory.decodeFile(path);
-
-
-
         /*
         Bitmap sudoku_bitmap = BitmapFactory.decodeFile(path);
         Mat sudoku = new Mat(sudoku_bitmap.getHeight(), sudoku_bitmap.getWidth(), CV_8UC1);
@@ -146,7 +139,6 @@ public class OpenCVPresenter {
                 }
             }
         }*/
-
         return null;
     }
 

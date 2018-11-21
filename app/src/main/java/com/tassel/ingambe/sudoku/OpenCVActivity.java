@@ -10,12 +10,9 @@ import android.widget.ImageView;
 import com.tassel.ingambe.sudoku.Presenter.OpenCVPresenter;
 import com.tassel.ingambe.sudoku.View.OpenCVView;
 
-import org.opencv.android.BaseLoaderCallback;
-
 public class OpenCVActivity extends AppCompatActivity implements OpenCVView {
 
     private OpenCVPresenter openCVPresenter;
-    private BaseLoaderCallback mLoaderCallback;
     private ImageView imageView;
 
     @Override
