@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/choco-solver-4.0.9" />
+            <option value="$PROJECT_DIR$/openCVLibrary" />
             <option value="$PROJECT_DIR$/openCVLibrary343" />
           </set>
         </option>

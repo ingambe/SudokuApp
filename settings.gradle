@@ -1,2 +1,3 @@
 include ':app', ':choco-solver-4.0.9'
+include ':openCVLibrary'
 include ':openCVLibrary343'

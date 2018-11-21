@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.opencv.android.OpenCVLoader;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_LEVEL = "EXTRA_LEVEL";
     public static final String EXTRA_SIZE = "EXTRA_SIZE";
     public static final String IOEXECPTION_TAG = "IOEXECPTION_TAG";
-    public static final String PHOTO_PATH = "PHOTO_PATH";
+    public static final String EXTRA_PHOTO_PATH = "PHOTO_PATH";
 
     public static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -51,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        if (!OpenCVLoader.initDebug()) {
+            Log.e(this.getClass().getSimpleName(), "  OpenCVLoader.initDebug(), not working.");
+        } else {
+            Log.d(this.getClass().getSimpleName(), "  OpenCVLoader.initDebug(), working.");
+        }
     }
 
     @OnClick({R.id.bt_easy, R.id.bt_medium, R.id.bt_hard, R.id.bt_open_cv})
@@ -108,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == MainActivity.REQUEST_IMAGE_CAPTURE) {
             Intent newActivity = new Intent(MainActivity.this, OpenCVActivity.class);
-            newActivity.putExtra(PHOTO_PATH, mCurrentPhotoPath);
+            newActivity.putExtra(MainActivity.EXTRA_PHOTO_PATH, mCurrentPhotoPath);
             startActivity(newActivity);
         }
     }
