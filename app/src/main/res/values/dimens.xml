@@ -3,4 +3,5 @@
     <dimen name="main_title">48sp</dimen>
     <dimen name="main_button">32sp</dimen>
     <dimen name="submit_button">24sp</dimen>
+    <dimen name="solver_title">24sp</dimen>
 </resources>

@@ -16,6 +16,11 @@ public class Sudoku {
         this.size = size;
         this.fullGrid = new int[size][size];
         this.holeGrid = new boolean[size][size];
+        for(int i = 0; i < size; i++){
+            for(int j = 0; j < size; j++){
+                this.holeGrid[i][j] = true;
+            }
+        }
     }
 
     public Sudoku(Sudoku sudoku){

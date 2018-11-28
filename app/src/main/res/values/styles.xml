@@ -26,5 +26,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="SolverTitle">
+        <item name="android:textSize">@dimen/solver_title</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 
 </resources>

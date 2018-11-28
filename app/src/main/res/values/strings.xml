@@ -15,4 +15,5 @@
     <string name="hard_success">Wahooo ! You\'re strong</string>
     <string name="time_success">You succed in </string>
     <string name="solver">Solve</string>
+    <string name="solver_explanation">Type the incomplete Sudoku</string>
 </resources>
