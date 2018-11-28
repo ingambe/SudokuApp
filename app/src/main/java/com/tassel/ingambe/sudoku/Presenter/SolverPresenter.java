@@ -56,9 +56,10 @@ public class SolverPresenter {
             for(int j = 0; j < model.getSize(); j++){
                 int element = view.getGridElement(i, j);
                 if(element != -1) {
-                    model.getFullGrid()[i][j] = view.getGridElement(i, j);
+                    model.getFullGrid()[i][j] = element;
                     model.getHoleGrid()[i][j] = false;
                 } else {
+                    model.getFullGrid()[i][j] = 0;
                     model.getHoleGrid()[i][j] = true;
                 }
             }
@@ -75,6 +76,7 @@ public class SolverPresenter {
                 }
             }
         } else if(sudokuSolver.nbSolutions == 0){
+            // TODO : SHOW SAME NUMBER
             view.showNoSolution();
         } else {
             view.showMultipleSolution();

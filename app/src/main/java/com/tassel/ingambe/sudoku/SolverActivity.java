@@ -1,6 +1,8 @@
 package com.tassel.ingambe.sudoku;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -46,9 +48,9 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
     @OnClick(R.id.bt_solver)
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.bt_submit:
-            solverPresenter.verifySudoku();
-            break;
+            case R.id.bt_solver:
+                solverPresenter.verifySudoku();
+                break;
         }
     }
 
@@ -181,11 +183,26 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
 
     @Override
     public void showNoSolution() {
-
+        String message = getResources().getText(R.string.solver_no_solution).toString();
+        alertDialogInformation(message);
     }
 
     @Override
     public void showMultipleSolution() {
+        String message = getResources().getText(R.string.solver_no_unique).toString();
+        alertDialogInformation(message);
+    }
 
+    private void alertDialogInformation(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        builder.create().show();
     }
 }

@@ -16,4 +16,6 @@
     <string name="time_success">You succed in </string>
     <string name="solver">Solve</string>
     <string name="solver_explanation">Type the incomplete Sudoku</string>
+    <string name="solver_no_solution">There is no solution, please check the grid to correct potential errors</string>
+    <string name="solver_no_unique">There is no unique solution, there is probably some missing row in the grid</string>
 </resources>
