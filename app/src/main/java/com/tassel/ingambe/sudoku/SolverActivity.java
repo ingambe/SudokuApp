@@ -44,7 +44,12 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
     }
 
     @OnClick(R.id.bt_solver)
-    public void onViewClicked() {
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.bt_submit:
+            solverPresenter.verifySudoku();
+            break;
+        }
     }
 
     /**
@@ -137,4 +142,50 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
         super.onDestroy();
     }
 
+    @Override
+    public void colorGreenRow(int i, int j) {
+        colorRow(i, j, 0);
+    }
+
+    /**
+     * Color a row with the desire color
+     * @param i line
+     * @param j columm
+     * @param color 0 == red
+     *              1 == orange
+     */
+    private void colorRow(int i, int j, int color){
+        View parentRow = tbSudoku.getChildAt(i);
+        if(parentRow instanceof TableRow){
+            TableRow tableRow = (TableRow) parentRow;
+            EditText editText = (EditText) tableRow.getChildAt(j);
+            switch (color){
+                case 0:
+                    if(i == 2 && j == 3 || i == 2 && j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_bottom_green));
+                    } else if(i == 5 && j == 3 || i == 5 && j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_bottom_green));
+                    } else if(j == 3 || j == 6){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_left_green));
+                    } else if(i == 2 || i == 5){
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_bottom_green));
+                    } else {
+                        editText.setBackground(getDrawable(R.drawable.sudoku_cell_green));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void showNoSolution() {
+
+    }
+
+    @Override
+    public void showMultipleSolution() {
+
+    }
 }

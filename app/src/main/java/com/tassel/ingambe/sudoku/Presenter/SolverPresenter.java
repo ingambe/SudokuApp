@@ -1,6 +1,7 @@
 package com.tassel.ingambe.sudoku.Presenter;
 
 import com.tassel.ingambe.sudoku.Model.Sudoku;
+import com.tassel.ingambe.sudoku.Solver.SudokuSolver;
 import com.tassel.ingambe.sudoku.View.SolverView;
 
 public class SolverPresenter {
@@ -51,14 +52,33 @@ public class SolverPresenter {
     }
 
     public void verifySudoku(){
-
+        for(int i = 0; i < model.getSize(); i++){
+            for(int j = 0; j < model.getSize(); j++){
+                int element = view.getGridElement(i, j);
+                if(element != -1) {
+                    model.getFullGrid()[i][j] = view.getGridElement(i, j);
+                    model.getHoleGrid()[i][j] = false;
+                } else {
+                    model.getHoleGrid()[i][j] = true;
+                }
+            }
+        }
+        SudokuSolver sudokuSolver = new SudokuSolver(model);
+        int[][] sol = sudokuSolver.getSolution();
+        if(sudokuSolver.nbSolutions == 1){
+            for(int i = 0; i < model.getSize(); i++) {
+                for (int j = 0; j < model.getSize(); j++) {
+                    if(model.getHoleGrid()[i][j]){
+                        view.colorGreenRow(i, j);
+                        view.setGridElement(i, j, sol[i][j]);
+                    }
+                }
+            }
+        } else if(sudokuSolver.nbSolutions == 0){
+            view.showNoSolution();
+        } else {
+            view.showMultipleSolution();
+        }
     }
 
-    public void showNoSolution(){
-
-    }
-
-    public void showMultipleSolution(){
-
-    }
 }

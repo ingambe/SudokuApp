@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="colorRedRow">#FF0A10</color>0
+    <color name="colorRedRow">#FF0A10</color>
     <color name="colorOrangeRow">#F9B713</color>
+    <color name="colorGreenRow">#0FC70F</color>
 </resources>

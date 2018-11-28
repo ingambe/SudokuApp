@@ -15,8 +15,8 @@ public class SudokuSolver {
     private IntVar rows[][];
     private IntVar squares[][];
 
-    long nbSolutions;
-    long nbBacktrack;
+    public long nbSolutions;
+    public long nbBacktrack;
 
     public SudokuSolver(Sudoku sudoku) {
         this.sudoku = sudoku;
