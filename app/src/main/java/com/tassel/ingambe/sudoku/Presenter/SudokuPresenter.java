@@ -23,7 +23,9 @@ public class SudokuPresenter {
         this.view = view;
         this.difficulty = view.getDifficulty();
         this.size = view.getSize();
-        model = SudokuAbstractFactory.make(difficulty, size);
+        if(model == null) {
+            model = SudokuAbstractFactory.make(difficulty, size);
+        }
         view.generateGrid(model);
         view.setDifficultyText(difficulty);
         view.startChronometer();

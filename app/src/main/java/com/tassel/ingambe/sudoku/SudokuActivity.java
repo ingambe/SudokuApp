@@ -46,8 +46,10 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
         sudokuPresenter = (SudokuPresenter) getLastCustomNonConfigurationInstance();
         if(sudokuPresenter == null) {
             sudokuPresenter = new SudokuPresenter();
+            sudokuPresenter.initView(this);
+        } else {
+            sudokuPresenter.initView(this);
         }
-        sudokuPresenter.initView(this);
     }
 
     @OnClick({R.id.bt_submit})

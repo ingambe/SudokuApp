@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     Button btMedium;
     @BindView(R.id.bt_hard)
     Button btHard;
+    @BindView(R.id.bt_solver)
+    Button btSolver;
     @BindView(R.id.tv_credit)
     TextView tvCredit;
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.bt_easy, R.id.bt_medium, R.id.bt_hard})
+    @OnClick({R.id.bt_easy, R.id.bt_medium, R.id.bt_hard, R.id.bt_solver})
     public void onViewClicked(View view) {
         Intent intent = new Intent(MainActivity.this, SudokuActivity.class);
         switch (view.getId()) {
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.bt_hard:
                 intent.putExtra(MainActivity.EXTRA_LEVEL, 2);
+                break;
+            case R.id.bt_solver:
+                intent = new Intent(MainActivity.this, SolverActivity.class);
                 break;
         }
         startActivity(intent);
