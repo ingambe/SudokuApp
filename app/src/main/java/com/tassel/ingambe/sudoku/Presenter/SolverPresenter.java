@@ -66,7 +66,7 @@ public class SolverPresenter {
         }
         SudokuSolver sudokuSolver = new SudokuSolver(model);
         int[][] sol = sudokuSolver.getSolution();
-        if(sudokuSolver.nbSolutions == 1){
+        if(sudokuSolver.nbSolutions >= 1){
             for(int i = 0; i < model.getSize(); i++) {
                 for (int j = 0; j < model.getSize(); j++) {
                     if(model.getHoleGrid()[i][j]){
@@ -75,12 +75,18 @@ public class SolverPresenter {
                     }
                 }
             }
-        } else if(sudokuSolver.nbSolutions == 0){
+        } else {
+            // TODO : SHOW SAME NUMBER
+            view.showNoSolution();
+        }
+        /**
+        else if(sudokuSolver.nbSolutions == 0){
             // TODO : SHOW SAME NUMBER
             view.showNoSolution();
         } else {
             view.showMultipleSolution();
         }
+         **/
     }
 
 }

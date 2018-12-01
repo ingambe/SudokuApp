@@ -33,7 +33,7 @@ public class SudokuSolverTest {
     public void solverTestSolutionExist() {
         solver = new SudokuSolver(sudoku);
         int[][] sol = solver.getSolution();
-        assertEquals(solver.nbSolutions, 1);
+        assertTrue(solver.nbSolutions >= 1);
         int[][] grid = makeGrid(9);
         for(int i = 0; i < 9; i++){
             for(int j = 0; j < 9; j++){
