@@ -19,7 +19,6 @@ public class SudokuAbstractFactoryTest {
 
     @Test
     public void medium(){
-        //TODO FIX
         testDifficulty(1);
     }
 
