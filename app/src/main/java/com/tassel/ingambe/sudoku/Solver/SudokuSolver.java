@@ -89,9 +89,9 @@ public class SudokuSolver {
     }
 
     public int[][] getSolution(){
-        solve();
+        boolean solutionExist = solve();
         int solution[][] = new int[nbRow][nbRow];
-        if (nbSolutions >= 1) {
+        if (solutionExist) {
             for (int i = 0; i < nbRow; i++) {
                 for (int j = 0; j < nbRow; j++) {
                     solution[i][j] = lines[i][j].getValue();

@@ -32,7 +32,14 @@ public class SudokuAbstractFactoryTest {
         for(int i = 0; i < 100; i++) {
             sudoku = SudokuAbstractFactory.make(difficulty, 9);
             solver = new SudokuSolver(sudoku);
-            solver.solve();
+            for(int k = 0; k< 9; k++){
+                for(int j = 0; j < 9; j++){
+                    System.out.print(sudoku.getFullGrid()[k][j] + " ");
+                }
+                System.out.println();
+            }
+            int[][] sol = solver.getSolution();
+
             assertTrue(solver.uniqueSolution(), "There is only one solution for a grid, i:" + i);
         }
     }

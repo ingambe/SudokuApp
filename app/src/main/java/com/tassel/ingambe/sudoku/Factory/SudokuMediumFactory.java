@@ -33,10 +33,6 @@ public class SudokuMediumFactory {
         return sudoku;
     }
 
-    public static Sudoku make() {
-        return make(9);
-    }
-
     private static int[][] makeGrid(int size) {
         int[][] initialGrid = new int[size][size];
         if(size == 9) {
