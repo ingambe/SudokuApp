@@ -9,7 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/choco-solver" />
             <option value="$PROJECT_DIR$/choco-solver-4.0.9" />
           </set>
         </option>
