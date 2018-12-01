@@ -51,15 +51,9 @@ public class SudokuSolver {
         for(int i = 0; i < squareRows; i++){
             for(int j = 0; j < squareRows; j++) {
                 for(int k = 0; k < squareRows; k++) {
-                    squares[j + k * 3][i] = lines[k * 3][i + j * 3];
-                    squares[j + k * 3][i + 3] = lines[1 + k * 3][i + j * 3];
-                    squares[j + k * 3][i + 6] = lines[2 + k * 3][i + j * 3];
-                    /**
-                    for(int m = 0; m < squareRows; m++){
-                        //model.arithm(squares[j + (k * squareRows)][i + (m * squareRows)], "=", rows[m + (k * squareRows)][i + (j * squareRows)]).post();
-                        model.distance(squares[squareRows * i + j][squareRows*k+m], lines[squareRows*i+k][squareRows*j+m], "=", 0).post();
+                    for(int m = 0; m < squareRows; m++) {
+                        squares[j + k * 3][i + m * squareRows] = lines[k * 3 + m][i + j * 3];
                     }
-                     **/
                 }
             }
         }
