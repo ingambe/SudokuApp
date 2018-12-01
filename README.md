@@ -1,4 +1,8 @@
-![logo](https://upload.wikimedia.org/wikipedia/commons/2/27/Sudoku-by-L2G-20050714modif.svg)
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Sudoku-by-L2G-20050714modif.svg">
+</div>
+
+-----------------
 
 This application generate Sudoku grids and can solve a Sudoku grid using constraint programming.
 
