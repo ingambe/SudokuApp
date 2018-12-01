@@ -33,7 +33,7 @@ public class SudokuSolver {
         nbBacktrack = 0;
     }
 
-    public void applyConstraints(){
+    private void applyConstraints(){
         for(int i = 0; i < nbRow; i++){
             model.allDifferent(lines[i]).post();
             model.allDifferent(rows[i]).post();
@@ -41,7 +41,7 @@ public class SudokuSolver {
         }
         for(int i = 0; i < nbRow; i++){
             for(int j = 0; j < nbRow; j++){
-                model.arithm(lines[i][j], "=", rows[j][i]).post();
+                model.distance(lines[i][j], rows[j][i], "=", 0).post();
             }
         }
         int squareRows = (int) (Math.sqrt(nbRow) / 1);
@@ -50,7 +50,7 @@ public class SudokuSolver {
                 for(int k = 0; k < squareRows; k++) {
                     for(int m = 0; m < squareRows; m++){
                         //model.arithm(squares[j + (k * squareRows)][i + (m * squareRows)], "=", rows[m + (k * squareRows)][i + (j * squareRows)]).post();
-                        model.arithm(squares[squareRows * i + j][squareRows*k+m], "=", lines[squareRows*i+k][squareRows*j+m]).post();
+                        model.distance(squares[squareRows * i + j][squareRows*k+m], lines[squareRows*i+k][squareRows*j+m], "=", 0).post();
                     }
                 }
             }
@@ -65,7 +65,7 @@ public class SudokuSolver {
         }
     }
 
-    public boolean solve(){
+    private boolean solve(){
         applyConstraints();
         Solver solver = model.getSolver();
         // we do this to find if there is more than one solution ore not
