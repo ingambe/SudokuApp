@@ -14,6 +14,7 @@ public class SudokuDbHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase database){
+        /**
         String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + SudokuContract.SudokuEntry.TABLE_NAME + " (" +
                         SudokuContract.SudokuEntry._ID + " INTEGER PRIMARY KEY," +
@@ -25,6 +26,7 @@ public class SudokuDbHelper extends SQLiteOpenHelper {
                         SudokuContract.SudokuEntry.COLUMN_HOLE + " TEXT," +
                         "CONSTRAINT sudoku_unique UNIQUE (" + SudokuContract.SudokuEntry.COLUMN_GRID + ", " + SudokuContract.SudokuEntry.COLUMN_HOLE + "))";
         database.execSQL(SQL_CREATE_ENTRIES);
+         **/
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

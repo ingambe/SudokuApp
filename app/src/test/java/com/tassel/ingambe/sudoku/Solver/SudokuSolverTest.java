@@ -1,6 +1,5 @@
 package com.tassel.ingambe.sudoku.Solver;
 
-import com.tassel.ingambe.sudoku.Factory.SudokuEasyFactory;
 import com.tassel.ingambe.sudoku.Model.Sudoku;
 
 import org.junit.Before;
@@ -47,7 +46,7 @@ public class SudokuSolverTest {
         sudoku.getFullGrid()[0][1] = 5;
         sudoku.getFullGrid()[0][5] = 5;
         solver = new SudokuSolver(sudoku);
-        int[][] sol = solver.getSolution();
+        solver.getSolution();
         assertEquals(solver.nbSolutions, 0, "Two times the same number in line, no solution");
     }
 
@@ -55,7 +54,7 @@ public class SudokuSolverTest {
     public void solverTestMoreThanOneSolution() {
         Sudoku sudokuVide = new Sudoku(9);
         solver = new SudokuSolver(sudokuVide);
-        int[][] sol = solver.getSolution();
+        solver.getSolution();
         assertTrue(solver.nbSolutions > 1, "An empty grid has more than one solution");
     }
 

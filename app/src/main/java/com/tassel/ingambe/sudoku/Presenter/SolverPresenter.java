@@ -33,11 +33,6 @@ public class SolverPresenter {
         this.view = null;
     }
 
-    public void restart(SolverView view){
-        savedState = null;
-        initView(view);
-    }
-
     public void saveState(){
         savedState = new int[model.getSize()][model.getSize()];
         for(int i = 0; i < model.getSize(); i++){

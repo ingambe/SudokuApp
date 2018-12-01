@@ -94,7 +94,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
                 editText.setGravity(Gravity.CENTER);
                 // if it's not a hole we need to fill it and desactivate user inputs
                 if (!model.getHoleGrid()[i][j]) {
-                    editText.setText("" + model.getFullGrid()[i][j]);
+                    editText.setText(getString(R.string.number, model.getFullGrid()[i][j]));
                     editText.setFocusable(false);
                     editText.setFocusableInTouchMode(false);
                     editText.setClickable(false);
@@ -171,7 +171,7 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
             EditText editText = (EditText) tableRow.getChildAt(j);
             // if empty we return a flag to change the color with
             // a different color than the one for an error
-            editText.setText("" + value);
+            editText.setText(getString(R.string.number, value));
         }
     }
 

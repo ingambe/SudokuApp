@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.DigitsKeyListener;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -78,7 +77,7 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
                 editText.setGravity(Gravity.CENTER);
                 // if it's not a hole we need to fill it and desactivate user inputs
                 if (!model.getHoleGrid()[i][j]) {
-                    editText.setText("" + model.getFullGrid()[i][j]);
+                    editText.setText(getString(R.string.number, model.getFullGrid()[i][j]));
                     editText.setFocusable(false);
                     editText.setFocusableInTouchMode(false);
                     editText.setClickable(false);
@@ -129,7 +128,7 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
             EditText editText = (EditText) tableRow.getChildAt(j);
             // if empty we return a flag to change the color with
             // a different color than the one for an error
-            editText.setText("" + value);
+            editText.setText(getString(R.string.number,value));
         }
     }
 
@@ -154,8 +153,7 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
      * Color a row with the desire color
      * @param i line
      * @param j columm
-     * @param color 0 == red
-     *              1 == orange
+     * @param color 0 == green
      */
     private void colorRow(int i, int j, int color){
         View parentRow = tbSudoku.getChildAt(i);

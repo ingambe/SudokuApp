@@ -11,8 +11,6 @@ public class SudokuPresenter {
 
     private SudokuView view;
     private Sudoku model;
-    private int difficulty;
-    private int size;
     // variable to save state
     private int[][] savedState;
     private long timeChronometer;
@@ -21,8 +19,8 @@ public class SudokuPresenter {
 
     public void initView(SudokuView view){
         this.view = view;
-        this.difficulty = view.getDifficulty();
-        this.size = view.getSize();
+        int difficulty = view.getDifficulty();
+        int size = view.getSize();
         if(model == null) {
             model = SudokuAbstractFactory.make(difficulty, size);
         }

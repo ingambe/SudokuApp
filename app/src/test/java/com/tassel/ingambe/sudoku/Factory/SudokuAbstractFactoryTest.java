@@ -9,9 +9,6 @@ import static org.testng.Assert.*;
 
 public class SudokuAbstractFactoryTest {
 
-    private SudokuSolver solver;
-    private Sudoku sudoku;
-
     @Test
     public void easy(){
         testDifficulty(0);
@@ -29,9 +26,9 @@ public class SudokuAbstractFactoryTest {
 
     public void testDifficulty(int difficulty){
         for(int i = 0; i < 100; i++) {
-            sudoku = SudokuAbstractFactory.make(difficulty, 9);
-            solver = new SudokuSolver(sudoku);
-            int[][] sol = solver.getSolution();
+            Sudoku sudoku = SudokuAbstractFactory.make(difficulty, 9);
+            SudokuSolver solver = new SudokuSolver(sudoku);
+            solver.getSolution();
             assertTrue(solver.nbSolutions >= 1, "There is only one solution for a grid, i:" + i);
         }
     }
