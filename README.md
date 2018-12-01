@@ -55,3 +55,4 @@ The solver was purposely made generical to be able to solve `9*9`, `12*12`, ...
 
 * Generate grids using the solver and the number of backtrack to find the difficulty.
 * Red background for cells in solver activity if incorrect input.
+* OpenCV to grab Sudoku grid from Camera.
