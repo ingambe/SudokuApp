@@ -20,6 +20,5 @@ public interface SudokuView {
     void alertDialogSuccess(String message);
     String getTextSuccess(int difficulty);
     String getTextTime();
-    String getTextSecond();
 
 }

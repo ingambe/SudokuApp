@@ -18,4 +18,5 @@
     <string name="solver_explanation">Type the incomplete Sudoku</string>
     <string name="solver_no_solution">There is no solution, please check the grid to correct potential errors</string>
     <string name="solver_no_unique">There is no unique solution, there is probably some missing row in the grid</string>
+    <string name="okay">Okay</string>
 </resources>

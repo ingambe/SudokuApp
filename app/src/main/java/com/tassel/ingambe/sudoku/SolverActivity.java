@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.DigitsKeyListener;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -197,7 +198,7 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setCancelable(true)
-                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.okay, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
@@ -205,4 +206,5 @@ public class SolverActivity extends AppCompatActivity implements SolverView {
                 });
         builder.create().show();
     }
+
 }

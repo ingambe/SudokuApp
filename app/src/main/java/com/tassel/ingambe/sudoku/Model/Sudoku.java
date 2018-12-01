@@ -2,7 +2,7 @@ package com.tassel.ingambe.sudoku.Model;
 
 public class Sudoku {
 
-    int size;
+    private int size;
     private int fullGrid[][];
     private boolean holeGrid[][];
 
@@ -19,6 +19,7 @@ public class Sudoku {
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
                 this.holeGrid[i][j] = true;
+                this.fullGrid[i][j] = 0;
             }
         }
     }

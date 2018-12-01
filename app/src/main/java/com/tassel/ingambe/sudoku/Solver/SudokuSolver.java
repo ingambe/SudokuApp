@@ -3,8 +3,12 @@ package com.tassel.ingambe.sudoku.Solver;
 import com.tassel.ingambe.sudoku.Model.Sudoku;
 
 import org.chocosolver.solver.Model;
+import org.chocosolver.solver.Solution;
 import org.chocosolver.solver.Solver;
 import org.chocosolver.solver.variables.IntVar;
+import org.chocosolver.util.criteria.Criterion;
+
+import java.util.List;
 
 public class SudokuSolver {
 
@@ -64,7 +68,15 @@ public class SudokuSolver {
     public boolean solve(){
         applyConstraints();
         Solver solver = model.getSolver();
-        if(solver.solve()){
+        // we do this to find if there is more than one solution ore not
+        List<Solution> solutions = solver.findAllSolutions(new Criterion() {
+            @Override
+            public boolean isMet() {
+                return solver.getSolutionCount() > 1;
+            }
+        });
+        if(!solutions.isEmpty()){
+            solver.solve();
             nbSolutions = solver.getSolutionCount();
             nbBacktrack = solver.getBackTrackCount();
             return true;

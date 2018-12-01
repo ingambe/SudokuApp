@@ -37,7 +37,7 @@ public class SudokuSolverTest {
         int[][] grid = makeGrid(9);
         for(int i = 0; i < 9; i++){
             for(int j = 0; j < 9; j++){
-                assertEquals(grid[i][j], sol[i][j]);
+                assertEquals(sol[i][j], grid[i][j], "grid : " + grid[i][j] + " sol : " + sol[i][j]);
             }
         }
     }
@@ -49,6 +49,14 @@ public class SudokuSolverTest {
         solver = new SudokuSolver(sudoku);
         int[][] sol = solver.getSolution();
         assertEquals(solver.nbSolutions, 0, "Two times the same number in line, no solution");
+    }
+
+    @Test
+    public void solverTestMoreThanOneSolution() {
+        Sudoku sudokuVide = new Sudoku(9);
+        solver = new SudokuSolver(sudokuVide);
+        int[][] sol = solver.getSolution();
+        assertTrue(solver.nbSolutions > 1, "An empty grid has more than one solution");
     }
 
     private static int[][] makeGrid(int size) {

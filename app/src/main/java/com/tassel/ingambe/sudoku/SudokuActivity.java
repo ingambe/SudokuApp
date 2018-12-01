@@ -330,13 +330,4 @@ public class SudokuActivity extends AppCompatActivity implements SudokuView {
         return getResources().getText(R.string.time_success).toString();
     }
 
-    /**
-     * Get the second abbreviation
-     * @return the second abbreviation
-     */
-    @Override
-    public String getTextSecond() {
-        return getResources().getText(R.string.second_s).toString();
-    }
-
 }
