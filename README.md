@@ -4,7 +4,7 @@
 
 -----------------
 
-This application generate Sudoku grids and can solve a Sudoku grid using constraint programming.
+This Android application generate Sudoku grids and can solve a Sudoku grid using constraint programming.
 
 ## Grid Generation
 
