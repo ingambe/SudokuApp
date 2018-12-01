@@ -16,7 +16,7 @@ The randomizer is accessible here : [Sudoku Randomize](app/src/main/java/com/tas
 
 [![Choco-solver](http://www.choco-solver.org/img/banner.svg)](http://www.choco-solver.org/?utm_source=badge&utm_medium=badge&utm_campaign=badge)
 
-The solver use Choco-solver to solve the Sudoku grid.
+The solver use [Choco-solver](http://www.choco-solver.org/) to solve the Sudoku grid.
 
 With the following constraints:
 ```java
